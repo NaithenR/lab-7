@@ -4,7 +4,7 @@ class CaesarCipher(Cipher):
     '''
     A cipher where each letter is shifted a certain number of places down the alphabet.
     '''
-    def __init__(self):
+    def __init__(self,shift):
         '''
         Initializes the CaesarCipher class with a default shift value of 3.
         '''

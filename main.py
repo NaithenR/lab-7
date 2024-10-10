@@ -29,13 +29,11 @@ def main():
                 
             elif encryption_type == 2: # Caesar
                 shift = get_int_range("Enter shift value: ", 1, 25) 
-                cipher = CaesarCipher()
-                cipher._shift = shift 
+                cipher = CaesarCipher(shift) 
                 encrypted_message = cipher.encrypt_message(message)
 
             try: # Save encrypted message to file
                 with open('message.txt', 'w') as file: 
-#TODO
                     file.write(encrypted_message) 
                 print("Encrypted message saved to 'message.txt'.")
             except: 
@@ -61,8 +59,7 @@ def main():
                 
             elif decryption_type == 2: # Caesar
                 shift = get_int_range("Enter shift value: ", 1, 25) 
-                cipher = CaesarCipher()
-                cipher._shift = shift
+                cipher = CaesarCipher(shift)
                 decrypted_message = cipher.decrypt_message(message)
                 print(f"Decrypted message: {decrypted_message}")           
      
