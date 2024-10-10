@@ -10,6 +10,7 @@ def main():
     """
     Main function to handle user input for encryption and decryption using Atbash or Caesar cipher.
     """
+    message_exist = False
     while True:
         
         print("Secret Decoder Ring:")
@@ -31,13 +32,11 @@ def main():
                 shift = get_int_range("Enter shift value: ", 1, 25) 
                 cipher = CaesarCipher(shift) 
                 encrypted_message = cipher.encrypt_message(message)
-
-            try: # Save encrypted message to file
-                with open('message.txt', 'w') as file: 
-                    file.write(encrypted_message) 
-                print("Encrypted message saved to 'message.txt'.")
-            except: 
-                print("Error saving encrypted message.")
+ # Save encrypted message to file
+            with open('message.txt', 'w') as file: 
+                file.write(encrypted_message) 
+            print("Encrypted message saved to 'message.txt'.")
+            message_exist = True
             
             
         elif decoder == 2: # Decrypt
@@ -45,12 +44,13 @@ def main():
             print('2. Caesar')
             decryption_type = get_int_range("Enter 1 or 2: ", 1, 2)
         
-            try: # Read encrypted message from file
-                with open('message.txt', 'r') as file: 
-                    message = file.read()
-            except FileNotFoundError:
+            # Read encrypted message from file
+            if not message_exist:
                 print("No encrypted message found to decrypt.")
                 continue
+            with open('message.txt', 'r') as file: 
+                message = file.read()
+
                 
             if decryption_type == 1: # Atbash
                 cipher = Cipher()
